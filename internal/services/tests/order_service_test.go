@@ -75,7 +75,7 @@ func TestOrderService_PlaceOrder(t *testing.T) {
 				assert.Nil(t, order)
 			} else {
 				assert.NoError(t, err)
-				assert.Equal(t, "0000-0000-0000-0000", order.ID)
+				assert.Regexp(t, `^[a-f0-9\-]{36}$`, order.ID)
 				assert.Len(t, order.Items, 1)
 				assert.Len(t, order.Products, 1)
 			}
