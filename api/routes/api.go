@@ -22,17 +22,27 @@ func SetupRouter() *gin.Engine {
 	if err != nil {
 		fmt.Println("Error getting the current working directory:", err)
 	}
+	jsonFile := filepath.Join(dir, "data/valid_coupons.json")
 
-	coupon1 := filepath.Join(dir, "data/couponbase1.gz")
-	coupon2 := filepath.Join(dir, "data/couponbase2.gz")
-	coupon3 := filepath.Join(dir, "data/couponbase3.gz")
-	// Provide actual file paths for coupon data
-	couponFiles := []string{
-		coupon1,
-		coupon2,
-		coupon3,
-	}
-	couponService := services.NewCouponService(couponFiles)
+	// NOTE: [can be enable, since the files are already processed and,
+	// processed data is stored under valid_couponse.json - have commented the below code]
+
+	/*
+		coupon1 := filepath.Join(dir, "data/couponbase1.gz")
+		coupon2 := filepath.Join(dir, "data/couponbase2.gz")
+		coupon3 := filepath.Join(dir, "data/couponbase3.gz")
+		err = utils.PreprocessCoupons(
+			[]string{coupon1, coupon2, coupon3},
+			jsonFile,
+		)
+		if err != nil {
+			log.Fatalf("❌ Preprocessing failed: %v", err)
+			return
+		}
+	*/
+
+	// services.NewCouponServiceFromJSON("valid_coupons.json")
+	couponService := services.NewCouponServiceFromJSON(jsonFile)
 
 	orderService := services.NewOrderService(productService, couponService)
 

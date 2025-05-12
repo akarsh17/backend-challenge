@@ -1,6 +1,8 @@
 package services
 
 import (
+	"github.com/google/uuid"
+
 	"backend-challenge/internal/models"
 	"backend-challenge/pkg/errors"
 	"fmt"
@@ -63,7 +65,7 @@ func (os OrderServiceImpl) PlaceOrder(req models.OrderRequest) (*models.Order, e
 	}
 
 	return &models.Order{
-		ID:       "0000-0000-0000-0000",
+		ID:       uuid.NewString(),
 		Items:    orderItems,
 		Products: products,
 	}, nil
