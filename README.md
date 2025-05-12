@@ -3,7 +3,24 @@
 A modular, production-ready RESTful API built with Golang and Gin for managing food products and placing orders. Based on OpenAPI 3.1.0.
 
 ---
-NOTE: couponbase.gz files has to be added under ./data folder as they are large files and I couldn't add them to this repo
+### ⚠️ Note on `couponbase.gz` Files
+
+> The `couponbase.gz` files are **large** and have not been included in this repository.  
+> Please manually place them under the `./data/` directory.
+
+#### Preprocessing Information
+
+- The preprocessed output is stored at: `data/valid_coupons.json`.
+- If you wish to **re-process** the `.gz` files:
+  - Uncomment **lines 31 to 41** in `api/routes/api.go`.
+  - ⚠️ Processing these files at startup can **significantly delay the API server startup**, which is why this code is commented out by default.
+
+#### Alternative Approach
+
+- You can implement and expose a **dedicated API endpoint** to perform the preprocessing.
+- This endpoint can be triggered periodically by an **external scheduler** or **cron job** to reprocess coupon codes without impacting API startup time.
+
+
 ## 📁 Project Structure
 
 ```
