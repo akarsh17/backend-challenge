@@ -57,7 +57,7 @@ backend-challenge/
 ### Installation
 
 ```bash
-git clone https://github.com/akarsh1798/backend-challenge.git
+git clone https://github.com/akarsh17/backend-challenge.git
 cd backend-challenge
 go mod tidy
 ```
